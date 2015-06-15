@@ -9,8 +9,10 @@ class BootStrap {
 
         createUser()
         createTopic()
+        subscribeTopic()
         createResource()
-
+        createResourceRating()
+        createReadingItem()
 
     }
 
@@ -30,24 +32,61 @@ class BootStrap {
         }
 
     }
+    
+     void subscribeTopic() {
+
+        List<Topic> t = Topic.list()
+        List<User> u = User.list()
+        // Random rn=new Random()
+        t.each { i ->
+            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u.get(1))).save(flush: true, failOnError: true)
+
+
+        }
+    }
 
     void createResource() {
 
         List<Topic> t = Topic.list()
-        List<User> u = User.list()
-       // Random rn=new Random()
-        t.eachWithIndex{ e,i->
-            e.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user:u.get(1))).save(flush: true, failOnError: true)
 
+        t.eachWithIndex { e,i ->
 
-            3.times {
-                e.addToResources(new LinkResource(description: "LINKRES:${it}", url: "http", heading: "h:${it}")).save(flush: true, failOnError: true)
-
-                e.addToResources(new DocumentResource(description: "DOCRES- ${it}",filePath: "/Desktop",heading: "H: ${it}")).save(flush: true,failOnError: true)
+            if (i % 2 == 0)
+                2.times {
+                    e.addToResources(new LinkResource(description: "LINKRES:${it}", url: "http", heading: "h:${it}")).save(flush: true, failOnError: true)
+                }
+            else {
+                2.times {
+                    e.addToResources(new DocumentResource(description: "DOCRES- ${it}", filePath: "/Desktop", heading: "H: ${it}")).save(flush: true, failOnError: true)
+                }
             }
         }
+    }
+    
+    void createResourceRating(){
+
+
+        List<User> u=User.list()
+        List<Resource> r=Resource.list()
+        Random rm=new Random()
+        r.each {i->
+            i.addToResourceratings(score: rm.nextInt(10),user: u.get(rm.nextInt(2))).save(flush: true,failOnError: true)
+        }
+
 
     }
+
+    void createReadingItem(){
+        List<User> u= User.list()
+        List<Resource> r=Resource.list()
+        Random rm=new Random()
+        u.each{i->
+            3.times {
+                i.addToReadingitems(new ReadingItem(isRead: true,resources:r.get(rm.nextInt(10)))).save(flush: true, failOnError: true)
+            }
+        }
+    }
+
 
 
     def destroy = {
