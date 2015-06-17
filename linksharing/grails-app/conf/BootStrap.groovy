@@ -2,6 +2,7 @@
 import linksharing.*
 import groovy.*
 
+
 class BootStrap {
 
     def init = { servletContext ->
@@ -17,8 +18,8 @@ class BootStrap {
 
     void createUser() {
 
-        new User(email: "tj", username: "t", password: "t", fname: "t", lname: "j", admin: false, active: true).save(flush: true, failOnError: true)
-        new User(email: "ab", username: "a", password: "ab", fname: "a", lname: "b", admin: false, active: true).save(flush: true, failOnError: true)
+        new User(email: "tj@gmail.com", username: "tarun", password: "12345", firstname: "t", lastname: "j", admin: false, active: true).save(flush: true, failOnError: true)
+        new User(email: "ab@gmail.com", username: "anjali", password: "54321", firstname: "a", lastname: "b", admin: false, active: true).save(flush: true, failOnError: true)
     }
 
     void createTopic() {
@@ -38,7 +39,7 @@ class BootStrap {
         List<User> u = User.list()
         // Random rn=new Random()
         t.each { i ->
-            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u.get(1))).save(flush: true, failOnError: true)
+            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u)).save(flush: true, failOnError: true)
 
 
         }
