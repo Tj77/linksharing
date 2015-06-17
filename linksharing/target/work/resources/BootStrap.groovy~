@@ -20,7 +20,11 @@ class BootStrap {
 
         new User(email: "tj@gmail.com", username: "tarun", password: "12345", firstname: "t", lastname: "j", admin: false, active: true).save(flush: true, failOnError: true)
         new User(email: "ab@gmail.com", username: "anjali", password: "54321", firstname: "a", lastname: "b", admin: false, active: true).save(flush: true, failOnError: true)
+<<<<<<< HEAD
+    }
+=======
     } }
+>>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
     void createTopic() {
 
@@ -32,14 +36,23 @@ class BootStrap {
         }
 
     }
+<<<<<<< HEAD
+
+    void subscribeTopic() {
+=======
     
      void subscribeTopic() {
+>>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
         List<Topic> t = Topic.list()
         List<User> u = User.list()
         // Random rn=new Random()
         t.each { i ->
+<<<<<<< HEAD
+            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u)).save(flush: true, failOnError: true)
+=======
             i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u.get(1))).save(flush: true, failOnError: true)
+>>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
 
         }
@@ -48,9 +61,15 @@ class BootStrap {
     void createResource() {
 
         List<Topic> t = Topic.list()
+<<<<<<< HEAD
 
         t.eachWithIndex { e,i ->
 
+=======
+
+        t.eachWithIndex { e,i ->
+
+>>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
             if (i % 2 == 0)
                 2.times {
                     e.addToResources(new LinkResource(description: "LINKRES:${it}", url: "http", heading: "h:${it}")).save(flush: true, failOnError: true)
@@ -62,7 +81,14 @@ class BootStrap {
             }
         }
     }
+<<<<<<< HEAD
+
+
+
+
+=======
     
+>>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
     void createResourceRating(){
 
 
@@ -86,8 +112,11 @@ class BootStrap {
             }
         }
     }
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
     def destroy = {
     }
