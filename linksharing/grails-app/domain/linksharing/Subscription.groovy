@@ -9,5 +9,7 @@ class Subscription {
     static belongsTo = [topics:Topic,user:User]
 
     static constraints = {
+
+
     }
 }

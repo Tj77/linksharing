@@ -18,16 +18,19 @@ class BootStrap {
 
     void createUser() {
 
-        new User(email: "tj@gmail.com", username: "tarun", password: "12345", firstname: "t", lastname: "j", admin: false, active: true).save(flush: true, failOnError: true)
-        new User(email: "ab@gmail.com", username: "anjali", password: "54321", firstname: "a", lastname: "b", admin: false, active: true).save(flush: true, failOnError: true)
-    } }
+        new User(email: "tj@gmail.com", username: "t", password: "12345", firstname: "tar", lastname: "j", admin: false, active: true).save(flush: true, failOnError: true)
+        new User(email: "ab@gmail.com", username: "a", password: "54321", firstname: "anj", lastname: "b", admin: false, active: true).save(flush: true, failOnError: true)
+        new User(email: "shr@gmail.com", username: "s", password: "sss", firstname: "shr", lastname: "n", admin: true, active: true).save(flush: true, failOnError: true)
+    }
 
     void createTopic() {
 
+
         List<User> u = User.list()
         u.each { i ->
+            if(!i.admin)
             5.times {
-                i.addToTopics(new Topic(name: "No. ${it}", visibility: Visibility.PUBLIC)).save(flush: true, failOnError: true)
+                i.addToTopics(new Topic(name: "Topic. ${it}", visibility: Visibility.PUBLIC)).save(flush: true, failOnError: true)
             }
         }
 
@@ -37,9 +40,10 @@ class BootStrap {
 
         List<Topic> t = Topic.list()
         List<User> u = User.list()
-        // Random rn=new Random()
+         Random rn=new Random()
         t.each { i ->
-            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u.get(1))).save(flush: true, failOnError: true)
+
+            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u.get(rn.nextInt(2)))).save(flush: true, failOnError: true)
 
 
         }
@@ -53,11 +57,11 @@ class BootStrap {
 
             if (i % 2 == 0)
                 2.times {
-                    e.addToResources(new LinkResource(description: "LINKRES:${it}", url: "http", heading: "h:${it}")).save(flush: true, failOnError: true)
+                    e.addToResources(new LinkResource(description: "LinkResource ${it}", url: "http")).save(flush: true, failOnError: true)
                 }
             else {
                 2.times {
-                    e.addToResources(new DocumentResource(description: "DOCRES- ${it}", filePath: "/Desktop", heading: "H: ${it}")).save(flush: true, failOnError: true)
+                    e.addToResources(new DocumentResource(description: "DocumentResource ${it}", path: "/Desktop")).save(flush: true, failOnError: true)
                 }
             }
         }
@@ -70,7 +74,7 @@ class BootStrap {
         List<Resource> r=Resource.list()
         Random rm=new Random()
         r.each {i->
-            i.addToResourceratings(score: rm.nextInt(10),user: u.get(rm.nextInt(2))).save(flush: true,failOnError: true)
+            i.addToResourceratings(new ResourceRating(score: rm.nextInt(10),user: u.get(rm.nextInt(2)))).save(flush: true,failOnError: true)
         }
 
 
@@ -81,8 +85,9 @@ class BootStrap {
         List<Resource> r=Resource.list()
         Random rm=new Random()
         u.each{i->
+            if(!i.admin)
             3.times {
-                i.addToReadingitems(new ReadingItem(isRead: true,resources:r.get(rm.nextInt(10)))).save(flush: true, failOnError: true)
+                i.addToReadingitems(new ReadingItem(isRead:false,resources:r.get(rm.nextInt(10)))).save(flush: true, failOnError: true)
             }
         }
     }
@@ -91,5 +96,4 @@ class BootStrap {
 
     def destroy = {
     }
-
 }

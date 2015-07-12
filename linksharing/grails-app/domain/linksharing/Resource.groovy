@@ -5,10 +5,12 @@ class Resource {
     String description
     Date dateCreated
     Date lastUpdated
-    String heading
-    static belongsTo = [topics:Topic]
-    static hasMany = [readingitems:ReadingItem,resourceratings:ResourceRating]
+    static belongsTo = [topics: Topic]
+    static hasMany = [resourceratings: ResourceRating, readingItems: ReadingItem]
+    static mapping = {
+        tablePerHierarchy(false)
+    }
     static constraints = {
-    heading(blank: false)
+
     }
 }

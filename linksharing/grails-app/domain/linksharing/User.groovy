@@ -7,7 +7,7 @@ class User {
     String password
     String firstname
     String lastname
-    byte photo
+    byte[] photo
     boolean admin
     boolean active
     Date dateCreated
@@ -15,19 +15,13 @@ class User {
     static hasMany = [topics: Topic, subscriptions: Subscription, readingitems: ReadingItem, resourceratings: ResourceRating]
 
     static constraints = {
-<<<<<<< HEAD
 
-=======
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
             email email: true, nullable: false, unique: true
             firstname blank: false;
             lastname blank: false;
-            username blank: false, size: 5..15, unique: true
-            password blank: false, size: 5..15
-<<<<<<< HEAD
-            photo null: tru
+            username blank: false, size: 1..15, unique: true
+            password blank: false, size: 3..15
+            photo (nullable: true,maxSize: 1024*1024*5)
         }
-=======
-            photo null: true
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
+
     }

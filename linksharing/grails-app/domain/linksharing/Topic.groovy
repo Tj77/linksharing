@@ -15,5 +15,6 @@ class Topic {
     static hasMany = [subscriptions:Subscription,resources:Resource]
 
     static constraints = {
+        name unique: 'user'
     }
 }

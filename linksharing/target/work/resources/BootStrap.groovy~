@@ -18,41 +18,32 @@ class BootStrap {
 
     void createUser() {
 
-        new User(email: "tj@gmail.com", username: "tarun", password: "12345", firstname: "t", lastname: "j", admin: false, active: true).save(flush: true, failOnError: true)
-        new User(email: "ab@gmail.com", username: "anjali", password: "54321", firstname: "a", lastname: "b", admin: false, active: true).save(flush: true, failOnError: true)
-<<<<<<< HEAD
+        new User(email: "tj@gmail.com", username: "t", password: "12345", firstname: "tarun", lastname: "j", admin: false, active: true).save(flush: true, failOnError: true)
+        new User(email: "ab@gmail.com", username: "a", password: "54321", firstname: "anjali", lastname: "b", admin: false, active: true).save(flush: true, failOnError: true)
+        new User(email: "shruti@gmail.com", username: "s", password: "sss", firstname: "shruti", lastname: "n", admin: true, active: true).save(flush: true, failOnError: true)
     }
-=======
-    } }
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
     void createTopic() {
 
+
         List<User> u = User.list()
         u.each { i ->
+            if(!i.admin)
             5.times {
-                i.addToTopics(new Topic(name: "No. ${it}", visibility: Visibility.PUBLIC)).save(flush: true, failOnError: true)
+                i.addToTopics(new Topic(name: "Topic. ${it}", visibility: Visibility.PUBLIC)).save(flush: true, failOnError: true)
             }
         }
 
     }
-<<<<<<< HEAD
-
-    void subscribeTopic() {
-=======
     
      void subscribeTopic() {
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
         List<Topic> t = Topic.list()
         List<User> u = User.list()
         // Random rn=new Random()
         t.each { i ->
-<<<<<<< HEAD
-            i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u)).save(flush: true, failOnError: true)
-=======
+
             i.addToSubscriptions(new Subscription(seriousness: Seriousness.SERIOUS, user: u.get(1))).save(flush: true, failOnError: true)
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
 
         }
@@ -61,34 +52,21 @@ class BootStrap {
     void createResource() {
 
         List<Topic> t = Topic.list()
-<<<<<<< HEAD
 
         t.eachWithIndex { e,i ->
 
-=======
-
-        t.eachWithIndex { e,i ->
-
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
             if (i % 2 == 0)
                 2.times {
-                    e.addToResources(new LinkResource(description: "LINKRES:${it}", url: "http", heading: "h:${it}")).save(flush: true, failOnError: true)
+                    e.addToResources(new LinkResource(description: "LINKRES:${it}", url: "http")).save(flush: true, failOnError: true)
                 }
             else {
                 2.times {
-                    e.addToResources(new DocumentResource(description: "DOCRES- ${it}", filePath: "/Desktop", heading: "H: ${it}")).save(flush: true, failOnError: true)
+                    e.addToResources(new DocumentResource(description: "DOCRES- ${it}", filePath: "/Desktop")).save(flush: true, failOnError: true)
                 }
             }
         }
     }
-<<<<<<< HEAD
-
-
-
-
-=======
     
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
     void createResourceRating(){
 
 
@@ -107,18 +85,15 @@ class BootStrap {
         List<Resource> r=Resource.list()
         Random rm=new Random()
         u.each{i->
+            if(!i.admin)
             3.times {
                 i.addToReadingitems(new ReadingItem(isRead: true,resources:r.get(rm.nextInt(10)))).save(flush: true, failOnError: true)
             }
         }
     }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 88ed5b6ef87da3137d98955841df7a54ceff897a
 
     def destroy = {
     }
-
 }

@@ -2,7 +2,7 @@ package linksharing
 
 class ResourceRating {
 
-    int score
+    Integer score
     static belongsTo = [user:User,resources:Resource]
     static constraints = {
     }
