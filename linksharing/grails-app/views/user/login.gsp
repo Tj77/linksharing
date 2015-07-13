@@ -258,7 +258,7 @@
 
                 <g:if test="${item.key.user.username==user.username}">
 
-                    <g:uploadForm controller="topic" action="change" id="${item.key.id}>
+                    <g:uploadForm controller="topic" action="change" id="${item.key.id}">
                         <g:submitButton name="Save"/>
                         %{--${item.key.id}--}%
                         <g:select from="${Visibility}" name="visibility" />
