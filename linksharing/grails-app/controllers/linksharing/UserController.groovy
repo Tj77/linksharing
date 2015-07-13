@@ -165,8 +165,9 @@ class UserController {
     def edit(){
 
 
-            User user=User.findByUsername(session['usr'].toString())
-            render(view:'edit',model: [user:user])
+            User u=User.findByUsername(session['usr'].toString())
+            List<Subscription> sub=Subscription.findAllByUser(u)
+            render(view:'edit',model: [user:u,subs:sub])
 
 
     }
