@@ -20,7 +20,7 @@ class UserController {
 
     }
 
-    def reset1() {
+     def reset1() {
 
 
         User u = User.findByUsername(params.username)
@@ -28,18 +28,20 @@ class UserController {
             if ((params.password) == (params.conformpassword)) {
 
                 u.password = params.password
+                u.save(failOnError: true, flush: true)
+                flash.message2 = "pasword changed..."
+                render(view: '/user/change')
             } else {
-                render 'new password dont match'
+                flash.message2 = "password don't match..."
+                render(view: '/user/change')
             }
-        } else {
-            render 'enter valid username'
+
         }
+        else {
 
-        if (u.save(failOnError: true, flush: true)) {
-            render 'password changed'
+            flash.message2 = "enter valid  username..."
+            render(view: '/user/change')
         }
-
-
     }
 
 
