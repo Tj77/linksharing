@@ -64,7 +64,7 @@
 
                 <g:link controller="topic" action="alltopic">Topic :${user.topics.size()}</g:link><br>
 
-                <g:link controller="subscription" action="show">Subscription :${user.topics.subscriptions.size()}</g:link>
+                <g:link controller="subscription" action="show">Subscription :${subs.size()}</g:link>
         </div>
 
 </fieldset><br>
