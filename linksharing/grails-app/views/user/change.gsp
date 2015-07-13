@@ -37,7 +37,7 @@
               </g:if>
         </fieldset>
         
-        <g:link controller="user" >Go back to Login</g:link>
+        <g:link controller="login" >Go back to Login</g:link>
 </g:form>
 
 </body>
