@@ -44,7 +44,7 @@
             <g:textField name="search" placeholder="search" />
             <g:submitButton name="search" value="Search"/>
             <g:link controller="user" action="logout"  >Logout</g:link>&nbsp;
-            <g:link controller="user" action="logout"  > <--Back</g:link>
+            <g:link controller="dashboard"  > <--Back</g:link>
         </g:form>
 </div>
 
