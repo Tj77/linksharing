@@ -6,17 +6,17 @@ class UserController {
     def index() {}
 
     def update() {
-        User user=User.findByUsername(session['usr'].toString())
-        user.firstname=params.firstname
-        user.lastname=params.lastname
-        user.username=params.username
-        user.save(flush:true,failOnError: true)
+        User user = User.findByUsername(session['usr'].toString())
+        user.firstname = params.firstname
+        user.lastname = params.lastname
+        user.username = params.username
+        user.save(flush: true, failOnError: true)
         render 'Updated'
     }
 
     def reset() {
 
-        render (view: 'change.gsp')
+        render(view: 'change.gsp')
 
     }
 
@@ -43,26 +43,50 @@ class UserController {
     }
 
 
+    def register(UserCO userco) {
 
 
-    def register(UserCO userco){
+        if (userco.validate()) {
 
+                User u3 = new User()
+                if (u3) {
 
-        if(userco.validate()) {
-            User u=new User()
-            u.properties = userco.properties
-            u.save(flush: true, failOnError: true)
+                        User u1 = User.findByEmail(userco.email)
+                        User u2 = User.findByUsername(userco.username)
 
-            flash.message1 = "User saved Successfully"
-            redirect(controller: 'login')
+                    if (u1) {
+                        flash.message1 = "Email already registered..."
+                        redirect(controller: 'login')
+                    }
+                    else if (u2) {
+                        flash.message1 = "Username already exists..."
+                        redirect(controller: 'login')
+
+                    }
+                    else {
+
+                        u3.properties = userco.properties
+                        u3.save(flush: true, failOnError: true)
+
+                        flash.message1 = "User saved !"
+                        redirect(controller: 'login')
+                    }
+                }
         }
+
         else {
+                if (!(userco.password == userco.confirmPassword)) {
 
-            flash.message1 =" \"User not saved !\"\"empty fields or password don't match\""
-            redirect(controller:'login')
-
+                    flash.message1 = "password don't match !"
+                    redirect(controller: 'login')
+                } else {
+                    flash.message1 = "empty fields !"
+                    redirect(controller: 'login')
+                }
         }
+
     }
+
 
 
     def login(){
@@ -75,7 +99,7 @@ class UserController {
                     if (u.password == params.password){
                         session['fn']=u.firstname
                         render(view: '/user/admin')
-                }
+                    }
                 }
             else {
                     if (u.password == params.password) {
@@ -107,13 +131,14 @@ class UserController {
 
 
 
-def deactivate(){
+    def deactivate(){
 
-    User u=User.findById(params.id)
-    u.active=false
-    u.save(failOnError: true,flush: true)
-    render view: '/user/admin'
-}
+        User u=User.findById(params.id)
+        u.active=false
+        u.save(failOnError: true,flush: true)
+        render view: '/user/admin'
+    }
+
     def activate(){
 
         User u=User.findById(params.id)
@@ -159,18 +184,25 @@ def deactivate(){
     }
 
     def viewimage1(){
-        Set<ReadingItem> rt=ReadingItem.findAllByUser(User.findByUsername(s))
-        def ntread=Resource.list()-rt
-        byte[] image1=User.findById(rt.resources.id).photo
-        response.outputStream << image1
+
+
+        Resource res = Resource.findById(params.id)
+        byte[] img=User.findById(res.topics.user.id).photo
+
+//        render res.topics.user.id
+
+
+        response.outputStream << img
     }
 
+   def viewimage2(){
 
-    def upload(){
+       byte[] img=User.findById(params.id).photo
+//       render params.id
+       response.outputStream << img
+   }
 
-    render "hello"
 
-    }
 
 
     }

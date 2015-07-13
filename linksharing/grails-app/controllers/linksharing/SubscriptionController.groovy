@@ -18,11 +18,26 @@ class SubscriptionController {
     def unsubscribe(){
 
         Subscription s=Subscription.findById(params.id)
+//        render params.id
         s.delete(flush: true)
         redirect(controller: 'dashboard')
-
-
     }
+
+    def unsubscribe1(){
+        String s=session['usr']
+        User u=User.findByUsername(s)
+
+        Subscription sub=Subscription.findByUser(u)
+        def s1=sub.id
+
+        Subscription su=Subscription.findById(s1)
+//        render s1
+        su.delete(flush: true)
+        redirect(controller: 'dashboard')
+    }
+
+
+
 
     def subscribe(){
         String s=session['usr']

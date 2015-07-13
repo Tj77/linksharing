@@ -62,26 +62,33 @@
     <table class="table" border="1" style="width: 75%;">
         <tr>
             <td>
-                <h4><b> Topic User:</b></h4>
+                <h4><b> Topic Subscribed by:</b></h4>
             </td>
         </tr>
 
+
+        <g:each in="${usersub}" var="item">
+
             <tr>
                 <td>
-                    <img class="Photo" src="${createLink(controller: 'user',action: 'viewImage')}" width="80" height="100"/>
 
-                    <div style="position: relative;left: 30%;bottom: 100px">
-                        ${topic.user.firstname}<br>
-                    
-                        @${topic.user.username}<br>
-                   
-                        Topic  :${topic.user.topics.size()}<br>
-                    
-                        Subscription  :${topic.user.subscriptions.size()}
-                    </div>
+                    <img src="${createLink(controller: 'user',action: 'viewimage2')}" id="${item.id}" width="80" height="100"/>
+
+                        <div style="position: relative;left: 30%;bottom: 100px">
+                            ${item.firstname}${item.id}<br>
+
+                            @${item.username}<br>
+
+                            Topic  :${item.topics.size()}<br>
+
+                            Subscription  :${item.subscriptions.size()}<br><br>
+
+                            <g:link controller="user" action="viewimage2"  id="${item.id}">Click to view photo</g:link>
+                        </div>
+
                 </td>
             </tr>
-
+        </g:each>
     </table>
 
 </div>

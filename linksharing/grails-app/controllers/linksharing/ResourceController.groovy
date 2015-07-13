@@ -9,8 +9,7 @@ class ResourceController {
         String s=session['usr']
         User u =User.findByUsername(s)
         Random rm=new Random()
-
-         Resource res = Resource.findById(params.id)
+        Resource res = Resource.findById(params.id)
         res.addToResourceratings(new ResourceRating(score: rm.nextInt(10),user: u)).save(flush: true,failOnError: true)
 
         ResourceRating rr=ResourceRating.findByResources(res)

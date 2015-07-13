@@ -48,14 +48,12 @@
 
         <tr>
             <td><b>Topic</b></td>
-            <td><b>User</b></td>
-            <td><b>Seriousness</b></td>
+             <td><b>Seriousness</b></td>
         </tr>
 
             <g:each in="${subs}" var="item">
         <tr>
             <td>${item.topics.name}</td>
-            <td>${item.user.username}</td>
             <td>${item.seriousness}</td>
         </tr>
 

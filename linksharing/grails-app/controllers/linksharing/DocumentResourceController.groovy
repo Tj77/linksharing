@@ -1,13 +1,14 @@
 package linksharing
 
-import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
 class DocumentResourceController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index() {}
+    def index() {
+
+        render '...'
+
+           }
 
 
 
@@ -27,11 +28,7 @@ class DocumentResourceController {
             print doc.errors
     }
 
-    def cancel(){
 
-        redirect(controller: 'dashboard')
-
-    }
 
 
     def detail(){

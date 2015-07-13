@@ -19,25 +19,31 @@ class TopicController {
 
     }
 
+
+
     def show1() {
 
         String s = session['usr']
         User user=User.findByUsername(s)
 
-        Topic topic = Topic.findById(params.id)
-        int i = Subscription.countByTopics(topic)
-        int j = Resource.countByTopics(topic)
-        List<Subscription> sub = Subscription.findAllByTopics(topic)
-        List<Resource> res = Resource.findAllByTopics(topic)
+        Topic t = Topic.findById(params.topic)
+        int i = Subscription.countByTopics(t)
+        int j = Resource.countByTopics(t)
+        List<Subscription> sub = Subscription.findAllByTopics(t)
+        List<Resource> res = Resource.findAllByTopics(t)
 
-        render(view: '/topic/show', model: [topic: topic, user: user,subcount: i, rescount: j, subs: sub, resource: res, usersub: sub.user])
+        render(view: '/topic/show', model: [topic: t, user: user,subcount: i, rescount: j, subs: sub, resource: res, usersub: sub.user])
+
+    }
+
+    def cancel(){
+
+        redirect(controller: 'dashboard')
 
     }
 
 
-
-
-        def create(TopicCO topicco) {
+    def create(TopicCO topicco) {
             String s=session['usr']
             User user=User.findByUsername(s)
             Topic t=new Topic()

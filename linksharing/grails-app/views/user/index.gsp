@@ -12,6 +12,8 @@
 
 <title>Linksharing</title>
 
+
+
 <style type="text/css">
     #one {
         width: 100%;
@@ -140,7 +142,7 @@
 
             <legend align="center">Top post</legend>
             <hr width="100%" align="center">
-            <table cellpadding="2" cellspacing="5" >
+            <table cellpadding="2" cellspacing="5">
 
                 <tr>
                     <th>Post</th>

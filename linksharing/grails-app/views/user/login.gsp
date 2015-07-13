@@ -55,10 +55,10 @@
 
 
 <fieldset style="width: 20%;height: 23%;border: solid  " >
-    <g:link controller="user" action="login">
+
 
         <img class="Photo" src="${createLink(controller: 'user',action: 'viewImage')}" width="80" height="100"/>
-    </g:link>
+
 
         <div style="font-size: large ;position: relative;left: 105px;bottom: 90px;">
              ${user.firstname}<br>
@@ -87,7 +87,8 @@
         <g:each in="${ritem}" var="item">
             <tr>
                 <td>
-                    <img class="img-responsive" src="${createLink(controller: 'user',action: 'viewimage1')}" width="80" height="100"/>
+
+                    <img class="Photo" src="${createLink(controller: 'user',action: 'viewimage1') }" id="${item.id}" width="80" height="100"/>
                 <td>
                     ${item.topics.user.firstname}<br>
                     @${item.topics.user.username}<br>
@@ -98,7 +99,7 @@
                             else
                                 return false }}">
 
-                            <g:link controller="documentResource" action=""  id="${item.id}">Download</g:link>
+                            <g:link controller="documentResource" action="" >Download</g:link>
 
                         </g:if>
                     <g:else>
@@ -185,7 +186,7 @@
 
                 <g:select name="visibility" from="${groovy.Visibility}"/><br><br>
                 <g:submitButton name="save"/>
-                <g:submitButton name="cancel"/>
+                <g:actionSubmit action="cancel" value="cancel" name="cancel"/>
             </g:form>
         </td></tr>
     </table>
@@ -206,10 +207,16 @@
 
             <tr>
                 <td>
-            <br>
-                <g:link controller="topic" action="show1" id="${item.id}">${item.topics.name}(Id :${item.topics.id})</g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                User Id:&nbsp;&nbsp;&nbsp;${item.topics.user.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <g:link controller="subscription" action="unsubscribe" id="${item.id}">Unsubscribe</g:link>
+                    <br>
+                    <g:link controller="topic" action="show1" params="[topic:item.topics.id]">
+
+                        ${item.topics.name}(Id :${item.topics.id})
+
+                    </g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        User Id:&nbsp;&nbsp;&nbsp;${item.topics.user.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <g:link controller="subscription" action="unsubscribe" id="${item.id}">Unsubscribe</g:link>
 
                 </td>
             </tr>
@@ -239,13 +246,15 @@
                     return true
                         else
                     return false }}">
-                    <g:remoteLink controller="subscription" action="unsubscribe" id="${item.key.id}">Unsubscribe</g:remoteLink>
-                        <br>
+
+                    <g:remoteLink controller="subscription" action="unsubscribe1">Unsubscribe</g:remoteLink>
+
                 </g:if>
 
-                <g:else>
+            <g:else>
                     <g:remoteLink controller="subscription" action="subscribe"  id="${item.key.id}">subscribe</g:remoteLink>
-                </g:else><br>
+
+            </g:else><br><br>
 
                 <g:if test="${item.key.user.username==user.username}">
 

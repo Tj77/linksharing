@@ -12,7 +12,7 @@ class DashboardController {
         List<Topic> top=Topic.findAllByUser(u)
 
 
-        List<Resource>reso=Resource.list()
+        List<Resource> reso=Resource.list()
         //List<Resource> ntread=reso-rt
         List<ResourceRating> r=ResourceRating.list(sort:"score",order:"desc",max:"5")
 

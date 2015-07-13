@@ -18,14 +18,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-    #nav {
-
-        background-color:#eeeeee;
-        width: 100%;
-        height:100px;
-        padding:5px;
-    }
-
 
 #one {
 
@@ -57,10 +49,10 @@
 <table class="table" border="1" style="width: 40%">
     <tr>
         <td>
-            <div> ${rt.user.firstname} &nbsp;&nbsp;&nbsp;&nbsp;<br>@${rt.user.username}
+            <div> ${res.topics.user.firstname} &nbsp;&nbsp;&nbsp;&nbsp;<br>@${res.topics.user.username}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${rt.user.dateCreated}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${res.topics.user.dateCreated}
 
                 <br><br>
 

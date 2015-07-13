@@ -47,13 +47,15 @@
 
     <tr>
         <td><b>Topic</b></td>
+        <td><b>Topic Id</b></td>
         <td><b>Visibility</b></td>
     </tr>
 
-    <g:each in="${topic}" var="tops">
+    <g:each in="${topic}" var="item">
         <tr>
-            <td>${tops.name}</td>
-            <td>${tops.visibility}</td>
+            <td>${item.name}</td>
+            <td>${item.id}</td>
+            <td>${item.visibility}</td>
         </tr>
     </g:each>
 
