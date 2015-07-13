@@ -32,7 +32,12 @@
                 </tr>
 
             </table>
+              <g:if test="${flash.message2}">
+                <div align="center" style="font-size: large;color: red">${flash.message2}</div>
+              </g:if>
         </fieldset>
+        
+        <g:link controller="user" >Go back to Login</g:link>
 </g:form>
 
 </body>
