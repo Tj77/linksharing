@@ -258,12 +258,15 @@
 
                 <g:if test="${item.key.user.username==user.username}">
 
-                    <g:uploadForm controller="topic" action="change">
+                    <g:uploadForm controller="topic" action="change" id="${item.key.id}>
                         <g:submitButton name="Save"/>
                         %{--${item.key.id}--}%
-                        <g:select from="${Visibility}" name="visibility"  value="item.key.visibility" id="${item.key.visibility} "/>
+                        <g:select from="${Visibility}" name="visibility" />
                         <g:select name="seriousness" from="${Seriousness}" />
                     </g:uploadForm>
+                    
+                    <g:remoteLink controller="topic" action="delete" id="${item.key.id}">Delete</g:remoteLink>
+
                 </g:if>
         </g:each>
             </td>
