@@ -62,12 +62,11 @@ class TopicController {
 
 
     def search(){
-        String search=params.search
+        String s=params.search
         List<Topic> t = Topic.createCriteria().list{
-            like("name",search)
+            ilike("name","%${s}%")
         }
-        [t:t]
-        render '...'
+        [topic:t]
     }
 
     def change(TopicCO topicco) {
