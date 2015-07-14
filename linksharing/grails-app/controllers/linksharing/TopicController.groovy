@@ -21,7 +21,6 @@ class TopicController {
     
     def delete() {
         Topic t=Topic.findById(params.id)
-//        render params.id
         t.delete(flush:true)
         render 'deleted'
     }
